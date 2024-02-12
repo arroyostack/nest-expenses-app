@@ -1,12 +1,13 @@
-import { Controller, Delete, Get, Post, Put } from "@nestjs/common";
-
+import { Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { data, ReportType, Data } from './data';
 // Controllers are in charge of handling incoming requests and returning responses to the client.
 @Controller( 'report/:reportType' )
 export class AppController {
 
   @Get()
-  getAllReports() {
-    return [{ "report": "This will return all income report" }];
+  getAllReports( @Param( 'reportType' ) reportType: ReportType ): Data {
+    console.log( reportType );
+    return { report: data.report.filter( ( report ) => report.typeOfReport === reportType ) };
   }
 
   @Get( '/:id' )
@@ -28,4 +29,8 @@ export class AppController {
   deleteReport() {
     return { "report": "This will delete all income report" };
   }
+}
+
+function Pram( target: AppController, propertyKey: "getAllReports", parameterIndex: 0 ): void {
+  throw new Error( "Function not implemented." );
 }
