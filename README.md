@@ -1,4 +1,9 @@
-# Welcome to My Nest.js Expense Application Tutorial
+![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
+![NestJS](https://img.shields.io/badge/-NestJS-ea2845?style=flat-square&logo=nestjs&logoColor=white)
+![Prisma](https://img.shields.io/badge/-Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)
+
+# Nest.js Expense Application
 
 ## Introduction
 
@@ -31,8 +36,6 @@ An expense application API that allows users to manage their income and expenses
   - DELETE /report/expense/:expenseID
 
 ## Learning Objectives
-
-Throughout this tutorial, you'll gain valuable insights into:
 
 - Building a CRUD application with Nest.js, implementing RESTful principles.
 - TypeScript for type-safe development and improved code quality.
