@@ -3,15 +3,17 @@ export enum ReportType {
     INCOME = "income"
 }
 
+export interface SingleReport {
+    id: string;
+    source: string;
+    amount: number;
+    createdAt: Date;
+    updatedAt: Date;
+    typeOfReport: ReportType;
+}
+
 export interface Data {
-    report: {
-        id: string;
-        source: string;
-        amount: number;
-        createdAt: Date;
-        updatedAt: Date;
-        typeOfReport: ReportType;
-    }[];
+    report: SingleReport[];
 }
 
 export const data: Data = {

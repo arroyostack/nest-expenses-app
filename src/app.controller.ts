@@ -1,5 +1,13 @@
-import { Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { data, ReportType, Data } from './data';
+import { Controller, Delete, Get, Param, Post, Put, Body } from "@nestjs/common";
+import { data, ReportType, Data, SingleReport } from './data';
+
+// Helper function, need to decide where to put.
+const findReportByCategory = ( data: Data, reportType: ReportType ) => {
+  return data.report.filter( ( report ) => report.typeOfReport === reportType );
+};
+const findReportByCategoryAndId = ( data: Data, reportType: ReportType, id: string ) => {
+  return findReportByCategory( data, reportType ).find( report => report.id === id );
+};
 // Controllers are in charge of handling incoming requests and returning responses to the client.
 @Controller( 'report/:reportType' )
 export class AppController {
@@ -7,18 +15,21 @@ export class AppController {
   @Get()
   getAllReports( @Param( 'reportType' ) reportType: ReportType ): Data {
     console.log( reportType );
-    return { report: data.report.filter( ( report ) => report.typeOfReport === reportType ) };
+    const allReportsOfSpecificType = findReportByCategory( data, reportType );
+    return { report: allReportsOfSpecificType };
   }
 
   @Get( '/:id' )
-  getReportById() {
-    return { "report": "This will return income report by id" };
+  getReportById( @Param( 'reportType' ) reportType: ReportType, @Param( 'id' ) id: string ): { report: SingleReport; } {
+    const singleReportByIdAndType = findReportByCategoryAndId( data, reportType, id );
+
+    return { report: singleReportByIdAndType };
   }
 
   @Post()
   createReport() {
     return { "report": "This will create a new income report" };
-  }
+  };
 
   @Put( '/:id' )
   updateReport() {
